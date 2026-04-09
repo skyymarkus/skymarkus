@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+
+<html lang="ru">
+
+<head>
+
+&#x20;   <meta charset="UTF-8">
+
+&#x20;   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+&#x20;   <title>Мое Пространство</title>
+
+&#x20;   <style>
+
+&#x20;       :root {
+
+&#x20;           --primary: #7289da;
+
+&#x20;           --bg: #0f0c29;
+
+&#x20;           --glass: rgba(255, 255, 255, 0.1);
+
+&#x20;       }
+
+
+
+&#x20;       body {
+
+&#x20;           margin: 0;
+
+&#x20;           font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+&#x20;           background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+
+&#x20;           color: white;
+
+&#x20;           min-height: 100vh;
+
+&#x20;           display: flex;
+
+&#x20;           flex-direction: column;
+
+&#x20;           align-items: center;
+
+&#x20;           overflow-x: hidden;
+
+&#x20;       }
+
+
+
+&#x20;       /\* Задний фон с кругами \*/
+
+&#x20;       .orb {
+
+&#x20;           position: fixed;
+
+&#x20;           width: 300px;
+
+&#x20;           height: 300px;
+
+&#x20;           border-radius: 50%;
+
+&#x20;           filter: blur(80px);
+
+&#x20;           z-index: -1;
+
+&#x20;           opacity: 0.5;
+
+&#x20;       }
+
+
+
+&#x20;       /\* Главный контейнер \*/
+
+&#x20;       .container {
+
+&#x20;           max-width: 800px;
+
+&#x20;           width: 90%;
+
+&#x20;           margin: 50px 0;
+
+&#x20;           text-align: center;
+
+&#x20;       }
+
+
+
+&#x20;       .glass-card {
+
+&#x20;           background: var(--glass);
+
+&#x20;           backdrop-filter: blur(15px);
+
+&#x20;           border: 1px solid rgba(255,255,255,0.1);
+
+&#x20;           border-radius: 20px;
+
+&#x20;           padding: 40px;
+
+&#x20;           box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+
+&#x20;           margin-bottom: 30px;
+
+&#x20;       }
+
+
+
+&#x20;       /\* Ссылка на Дискорд \*/
+
+&#x20;       .discord-btn {
+
+&#x20;           display: inline-block;
+
+&#x20;           background: var(--primary);
+
+&#x20;           color: white;
+
+&#x20;           padding: 15px 40px;
+
+&#x20;           border-radius: 50px;
+
+&#x20;           text-decoration: none;
+
+&#x20;           font-weight: bold;
+
+&#x20;           font-size: 1.2rem;
+
+&#x20;           transition: transform 0.3s, box-shadow 0.3s;
+
+&#x20;           box-shadow: 0 4px 15px rgba(114, 137, 218, 0.4);
+
+&#x20;       }
+
+
+
+&#x20;       .discord-btn:hover {
+
+&#x20;           transform: scale(1.05);
+
+&#x20;           box-shadow: 0 6px 25px rgba(114, 137, 218, 0.6);
+
+&#x20;       }
+
+
+
+&#x20;       /\* Активности \*/
+
+&#x20;       .activities {
+
+&#x20;           display: grid;
+
+&#x20;           grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+
+&#x20;           gap: 20px;
+
+&#x20;           margin-top: 40px;
+
+&#x20;       }
+
+
+
+&#x20;       .activity-card {
+
+&#x20;           background: var(--glass);
+
+&#x20;           padding: 20px;
+
+&#x20;           border-radius: 15px;
+
+&#x20;           cursor: pointer;
+
+&#x20;           transition: 0.3s;
+
+&#x20;       }
+
+
+
+&#x20;       .activity-card:hover {
+
+&#x20;           background: rgba(255,255,255,0.2);
+
+&#x20;       }
+
+
+
+&#x20;       /\* Стили для мини-игр \*/
+
+&#x20;       #click-count { font-size: 2rem; color: #00ffcc; }
+
+&#x20;       #random-color-box { width: 100%; height: 50px; border-radius: 10px; margin-top: 10px; border: 1px solid white; }
+
+&#x20;   </style>
+
+</head>
+
+<body>
+
+
+
+&#x20;   <div class="orb" style="background: #7289da; top: -50px; left: -50px;"></div>
+
+&#x20;   <div class="orb" style="background: #ff0080; bottom: -50px; right: -50px;"></div>
+
+
+
+&#x20;   <div class="container">
+
+&#x20;       <div class="glass-card">
+
+&#x20;           <h1>Добро пожаловать! 🌌</h1>
+
+&#x20;           <p>Мы создаем крутое комьюнити. Присоединяйся к нам в Discord!</p>
+
+&#x20;           <br>
+
+&#x20;           <a href="https://discord.gg/ТВОЯ-ССЫЛКА" class="discord-btn" target="\_blank">Войти в Discord</a>
+
+&#x20;       </div>
+
+
+
+&#x20;       <h2>Чем займемся? 🎮</h2>
+
+&#x20;       
+
+&#x20;       <div class="activities">
+
+&#x20;           <div class="activity-card" onclick="clickMe()">
+
+&#x20;               <h3>Кликер</h3>
+
+&#x20;               <p>Нажми на меня!</p>
+
+&#x20;               <div id="click-count">0</div>
+
+&#x20;           </div>
+
+
+
+&#x20;           <div class="activity-card" onclick="changeColor()">
+
+&#x20;               <h3>Магия цвета</h3>
+
+&#x20;               <p>Жми, чтобы сменить фон</p>
+
+&#x20;               <div id="random-color-box"></div>
+
+&#x20;           </div>
+
+
+
+&#x20;           <div class="activity-card" onclick="askBall()">
+
+&#x20;               <h3>Шар судьбы</h3>
+
+&#x20;               <p id="ball-text">Нажми для совета</p>
+
+&#x20;           </div>
+
+
+
+&#x20;           <div class="activity-card" onclick="toggleEmoji()">
+
+&#x20;               <h3>Настроение</h3>
+
+&#x20;               <p id="emoji-display" style="font-size: 2rem;">🌟</p>
+
+&#x20;           </div>
+
+&#x20;       </div>
+
+&#x20;   </div>
+
+
+
+&#x20;   <script>
+
+&#x20;       // Логика кликера
+
+&#x20;       let count = 0;
+
+&#x20;       function clickMe() {
+
+&#x20;           count++;
+
+&#x20;           document.getElementById('click-count').innerText = count;
+
+&#x20;       }
+
+
+
+&#x20;       // Логика цвета
+
+&#x20;       function changeColor() {
+
+&#x20;           const colors = \['#FF5733', '#33FF57', '#3357FF', '#F333FF', '#FF33A8'];
+
+&#x20;           const randomColor = colors\[Math.floor(Math.random() \* colors.length)];
+
+&#x20;           document.getElementById('random-color-box').style.backgroundColor = randomColor;
+
+&#x20;       }
+
+
+
+&#x20;       // Логика предсказателя
+
+&#x20;       function askBall() {
+
+&#x20;           const answers = \["Да!", "Возможно", "Нет", "Точно нет", "Спроси позже", "100%"];
+
+&#x20;           const ballText = document.getElementById('ball-text');
+
+&#x20;           ballText.innerText = answers\[Math.floor(Math.random() \* answers.length)];
+
+&#x20;       }
+
+
+
+&#x20;       // Логика эмодзи
+
+&#x20;       const emojis = \["🔥", "🌈", "🍀", "💎", "👾", "🚀"];
+
+&#x20;       function toggleEmoji() {
+
+&#x20;           document.getElementById('emoji-display').innerText = emojis\[Math.floor(Math.random() \* emojis.length)];
+
+&#x20;       }
+
+&#x20;   </script>
+
+</body>
+
+</html>
+
